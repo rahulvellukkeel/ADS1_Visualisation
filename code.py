@@ -12,6 +12,8 @@ import pandas as pd
 #Reading the file
 world = pd.read_csv("E:/Herts/ADS1/Assignment 1/ADS1_Assignment_Visualisation/cause_of_deaths.csv")
 
+
+
 #Creating seperate dataframes for each country from input data
 uk = world.iloc[5790:5820]
 uk["Total"] = uk.sum(axis=1) - uk["Year"]
@@ -24,10 +26,26 @@ italy["Total"] = italy.sum(axis=1)-italy["Year"]
 
 def lineplot_different_countries(y_axis, x_axis):
     """
+    
         This function creates line plots for cardiovascular disease deaths for the countries 
         UK, Germany,Francy, and Italy with x and y axis given through arguments.
         Graphs are also saved as images to local directory
+
+    Parameters
+    ----------
+    y_axis : string
+        Variable to be used as the y axis. This will speify which column
+        to use from the dataframe.
+    x_axis : string
+        Variable to be used as the x axis. This will speify which column
+        to use from the dataframe.
+
+    Returns
+    -------
+    None.
+
     """
+
     plt.figure()
     plt.plot(uk[y_axis], uk[x_axis])
     plt.plot(germany[y_axis], germany[x_axis])
@@ -42,9 +60,29 @@ def lineplot_different_countries(y_axis, x_axis):
 
 def line_plot_different_diseases_uk(y_axis, reason_1, reason_2, reason_3):
     """
-        This function takes number of deaths from multiple causes of death in the uk and 
-        creates a lineplot of them against year. Graphs are also saved as images to local directory.
+    
+    This function takes number of deaths from multiple causes of death in the uk and 
+    creates a lineplot of them against year. Graphs are also saved as images to local directory.
+
+    Parameters
+    ----------
+    y_axis : string
+        Variable to be used as the y axis. This will speify which column
+        to use from the dataframe..
+    reason_1 : string
+        Cause of death that will be used in the plot.
+    reason_2 : string
+        Cause of death that will be used in the plot.
+    reason_3 : string
+        Cause of death that will be used in the plot.
+
+    Returns
+    -------
+    None.
+
     """
+
+
     plt.figure()
     plt.plot(uk[y_axis],uk[reason_1])
     plt.plot(uk[y_axis],uk[reason_2])
@@ -58,9 +96,21 @@ def line_plot_different_diseases_uk(y_axis, reason_1, reason_2, reason_3):
 
 def box_plot(data):
     """
-        This function creates box plots for cardiovascular disease deaths for certain countries.
-        List of dataframes are given as argument.Graphs are also saved as images to local directory
+    
+    This function creates box plots for cardiovascular disease deaths for certain countries.
+    Graphs are also saved as images to local directory
+
+    Parameters
+    ----------
+    data : list
+        List containing causes of death from different countries
+
+    Returns
+    -------
+    None.
+
     """
+
     plt.figure()
     plt.boxplot([data[0] , data[1] , data[2], data[3]], labels=["UK", "DE", "FR", "IT"])
     plt.ylabel("Deaths")
@@ -69,9 +119,20 @@ def box_plot(data):
 
 def bar_chart(cause):
     """
-        his function creates bar charts for a certain cuntries where cause of death 
-        is given as argument. Graph is also saved as images to local directory
+    This function creates bar charts for a certain cuntries where cause of death 
+    is given as argument. Graph is also saved as images to local directory
+
+    Parameters
+    ----------
+    cause : string
+        Cardiovascular deaths per total deaths
+
+    Returns
+    -------
+    None.
+
     """
+
     plt.figure()
     plt.hist(uk[cause], label = "UK", density=True, alpha=0.8)
     plt.hist(germany[cause], label = "DE", density=True, alpha=0.8)

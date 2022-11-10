@@ -2,7 +2,7 @@
 
 """
 This program takes cause of deaths data from around the world and produces plots 
-for certain countries which can be used to compare and analyse the data
+for certain countries which can be used to compare and analyse the data 
 """
 
 #Importing required packages
@@ -36,7 +36,7 @@ def lineplot_different_countries(y_axis, x_axis):
     plt.xlim(1990,2019)
     plt.xlabel("Year")
     plt.ylabel("Cardiovascular Deaths")
-    plt.legend(["UK","GER","FR","IT"])
+    plt.legend(["UK","DE","FR","IT"])
     plt.savefig("line1.png")
     plt.show()
 
@@ -63,7 +63,7 @@ def box_plot(y_axis, x_axis):
     """
     data = [uk[x_axis], germany[x_axis],france[x_axis],italy[x_axis]]
     plt.figure()
-    plt.boxplot([data[0] , data[1] , data[2], data[3]],labels=["UK","GER","FR","IT"])
+    plt.boxplot([data[0] , data[1] , data[2], data[3]],labels=["UK","DE","FR","IT"])
     plt.ylabel("Deaths")
     plt.savefig("box.png")
     plt.show()
@@ -82,7 +82,7 @@ def bar_chart(y_axis, x_axis):
     """
     plt.figure()
     plt.hist(uk["cvd per total deaths"],label = "UK", density=True,alpha=0.8)
-    plt.hist(germany["cvd per total deaths"], label = "GER", density=True,alpha=0.8)
+    plt.hist(germany["cvd per total deaths"], label = "DE", density=True,alpha=0.8)
     plt.hist(france["cvd per total deaths"], label = "FR", density=True,alpha=0.8)
     plt.hist(italy["cvd per total deaths"], label = "IT", density=True,alpha=0.8)
     plt.legend()

@@ -2,19 +2,17 @@
 
 """
 This program takes cause of deaths data from around the world and produces plots 
-for certain countries which can be used to compare and analyse the data 
+for certain countries which can be used to compare and analyse the data.
 """
 
 #Importing required packages
 import matplotlib.pyplot as plt
 import pandas as pd
 
-#Reading the file
+#Reading the file to the dataframe 'world'
 world = pd.read_csv("E:/Herts/ADS1/Assignment 1/ADS1_Assignment_Visualisation/cause_of_deaths.csv")
 
-
-
-#Creating seperate dataframes for each country from input data
+#Creating seperate dataframes for each country and creating a new row for total deaths each year
 uk = world.iloc[5790:5820]
 uk["Total"] = uk.sum(axis=1) - uk["Year"]
 germany = world.iloc[2010:2040]
@@ -55,7 +53,7 @@ def lineplot_different_countries(y_axis, x_axis):
     plt.xlabel("Year")
     plt.ylabel("Cardiovascular Deaths")
     plt.legend(["UK", "DE", "FR", "IT"])
-    plt.savefig("line1.png")
+    plt.savefig("line1.png", dpi=300, bbox_inches='tight')
     plt.show()
 
 def line_plot_different_diseases_uk(y_axis, reason_1, reason_2, reason_3):
@@ -89,9 +87,9 @@ def line_plot_different_diseases_uk(y_axis, reason_1, reason_2, reason_3):
     plt.plot(uk[y_axis],uk[reason_3])
     plt.xlabel("Year")
     plt.xlim(1990,2019)
-    plt.ylabel("Deaths")
+    plt.ylabel("Deaths in UK")
     plt.legend(["Alcohol abuse", "Violence", "Drowning"])
-    plt.savefig("line2.png")
+    plt.savefig("line2.png", dpi=300, bbox_inches='tight')
     plt.show()
 
 def box_plot(data):
@@ -113,8 +111,8 @@ def box_plot(data):
 
     plt.figure()
     plt.boxplot([data[0] , data[1] , data[2], data[3]], labels=["UK", "DE", "FR", "IT"])
-    plt.ylabel("Deaths")
-    plt.savefig("box.png")
+    plt.ylabel("Cardiovascular Deaths")
+    plt.savefig("box.png", dpi=300, bbox_inches='tight')
     plt.show()
 
 def bar_chart(cause):
@@ -134,14 +132,13 @@ def bar_chart(cause):
     """
 
     plt.figure()
-    plt.hist(uk[cause], label = "UK", density=True, alpha=0.8)
-    plt.hist(germany[cause], label = "DE", density=True, alpha=0.8)
-    plt.hist(france[cause], label = "FR", density=True, alpha=0.8)
-    plt.hist(italy[cause], label = "IT", density=True, alpha=0.8)
+    plt.hist(uk[cause], label = "UK", density=True, alpha=0.7)
+    plt.hist(germany[cause], label = "DE", density=True, alpha=0.7)
+    plt.hist(france[cause], label = "FR", density=True, alpha=0.7)
+    plt.hist(italy[cause], label = "IT", density=True, alpha=0.7)
     plt.legend()
     plt.xlabel("CVD per Total Deaths")
-    plt.xlabel("No. Of Deaths")
-    plt.savefig("bar.png")
+    plt.savefig("bar.png", dpi=300, bbox_inches='tight')
     plt.show()
 
 
